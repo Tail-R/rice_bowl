@@ -1,0 +1,30 @@
+#!/bin/bash
+
+
+# Set decoration geometry
+berryc border_width       6
+berryc inner_border_width 6
+berryc title_height       48
+berryc top_gap            30
+
+# Set decoration colors
+berryc focus_color         eab0c4
+berryc unfocus_color       fadee1
+berryc inner_focus_color   eab0c4
+berryc inner_unfocus_color fadee1
+berryc text_focus_color    ffffff
+berryc text_unfocus_color  ffffff
+
+# Other options
+berryc smart_place "true"
+berryc draw_text   "true"
+berryc edge_lock   "true"
+berryc set_font    "monospace-16"
+
+# misc
+~/.fehbg
+picom
+fcitx5
+mpd
+
+

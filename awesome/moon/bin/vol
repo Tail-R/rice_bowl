@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# dependencies: pactl pamixer
+
+get_val() {
+    pamixer --get-volume
+}
+
+get_icon() {
+    if [ "$(pamixer --get-mute)" == "true" ]; then
+        echo "󰖁"
+    else
+        echo "󰕾"
+    fi
+}
+
+listen_vol() {
+    pactl subscribe \
+        | grep --line-buffered "Event 'change' on sink" \
+        | while read -r evt; do
+        
+        if [ "$(pamixer --get-mute)" == "true" ]; then
+            echo "muted"
+        else
+            pamixer --get-volume
+        fi
+    done
+}
+
+# main
+case "$1" in
+    "-f")
+        listen_vol
+        ;;
+    "-v")
+        get_val
+        ;;
+    "-i")
+        get_icon
+        ;;
+esac
+
+
+
+

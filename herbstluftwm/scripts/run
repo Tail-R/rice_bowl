@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# dependencies: font, dmenu
+
+# font
+fname='azukifontB:size=12'
+
+# colors
+nfg='#f8f8f2'
+nbg='#5a5475'
+sfg='#f8f8f2'
+sbg='#363247'
+
+dmenu_run \
+    -fn "$fname" \
+    -nf $nfg \
+    -nb $nbg \
+    -sf $sfg \
+    -sb $sbg

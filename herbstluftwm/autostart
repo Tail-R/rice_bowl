@@ -1,0 +1,210 @@
+#!/usr/bin/env bash
+
+######################################################################
+## welcome to my herbstlftwm configurations! uwu*
+######################################################################
+
+# dependencies:
+# - alacritty
+# - picom
+# - maim
+# - feh
+# - lemonbar
+# - dmenu
+# - nemo
+# - brightnessctl
+# - pamixer
+
+# variables
+rdir="$HOME/.config/herbstluftwm"
+conf="$rdir/conf"
+
+myTerminal="alacritty"
+myApplauncher="$rdir/scripts/run"
+myFilemanager="nemo"
+
+cd $rdir
+source $conf
+
+# colors
+
+hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+
+# keybinds
+hc keyunbind --all
+# Mod=Mod1    # alt
+Mod=Mod4   # super
+
+hc keybind $Mod-Shift-Return spawn "${TERMINAL:-xterm}" # as fallback
+hc keybind $Mod-Return spawn $myTerminal
+hc keybind $Mod-x spawn xrdb merge ~/.Xresources
+hc keybind $Mod-d spawn $myApplauncher
+hc keybind $Mod-t spawn $myFilemanager
+
+hc keybind $Mod-s spawn $rdir/scripts/ss -f
+hc keybind $Mod-Shift-s spawn $rdir/scripts/ss -s
+
+hc keybind $Mod-w spawn $rdir/scripts/wall
+
+hc keybind XF86AudioRaiseVolume spawn pamixer --increase 5
+hc keybind XF86AudioLowerVolume spawn pamixer --decrease 5
+hc keybind XF86AudioMute spawn pamixer --toggle-mute
+
+hc keybind XF86MonBrightnessUp spawn brightnessctl s +5%
+hc keybind XF86MonBrightnessDown spawn brightnessctl s 5-%
+
+hc keybind $Mod-Shift-q quit
+hc keybind $Mod-r reload
+hc keybind $Mod-q close
+
+# vim like focus movement
+hc keybind $Mod-h    focus left
+hc keybind $Mod-j    focus down
+hc keybind $Mod-k    focus up
+hc keybind $Mod-l    focus right
+
+# move the client
+hc keybind $Mod-Shift-h    shift left
+hc keybind $Mod-Shift-j    shift down
+hc keybind $Mod-Shift-k    shift up
+hc keybind $Mod-Shift-l    shift right
+
+# split the frame
+hc keybind $Mod-o       split    bottom  0.5
+hc keybind $Mod-i       split    right   0.5
+hc keybind $Mod-Control-space split explode
+
+# resize the client
+resizestep=0.02
+hc keybind $Mod-Control-h       resize left     +$resizestep
+hc keybind $Mod-Control-j       resize down     +$resizestep
+hc keybind $Mod-Control-k       resize up       +$resizestep
+hc keybind $Mod-Control-l       resize right    +$resizestep
+hc keybind $Mod-Control-Left    resize left     +$resizestep
+hc keybind $Mod-Control-Down    resize down     +$resizestep
+hc keybind $Mod-Control-Up      resize up       +$resizestep
+hc keybind $Mod-Control-Right   resize right    +$resizestep
+
+hc load '(clients grid:0)'
+
+# tags
+tag_names=(零 壱 弐 参)
+# tag_names=(零 壱 弐 参 肆 伍 陸 漆 捌 玖)
+# tag_names=(鼠 牛 虎 兎 龍 蛇 馬 羊 猿 鶏 犬 猪)
+tag_keys=({1..4})
+
+hc rename default "${tag_names[0]}" || true
+for i in "${!tag_names[@]}" ; do
+    hc add "${tag_names[$i]}"
+
+    key="${tag_keys[$i]}"
+    if [ -n "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+
+hc set default_frame_layout grid
+
+# layouting
+hc keybind $Mod-u remove
+hc keybind $Mod-Shift-f floating toggle
+hc keybind $Mod-f fullscreen toggle
+# hc keybind $Mod-f set_attr clients.focus.floating toggle
+hc keybind $Mod-Shift-d set_attr clients.focus.decorated toggle
+hc keybind $Mod-Shift-m set_attr clients.focus.minimized true
+hc keybind $Mod-Control-m jumpto last-minimized
+hc keybind $Mod-p pseudotile toggle
+
+hc keybind $Mod-space cycle_layout +1
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle_all +1
+hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-c cycle
+# hc keybind $Mod-i jumpto urgent
+
+# frame
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+hc set frame_border_width 0
+hc set frame_bg_transparent on
+hc set frame_gap 4
+
+# title
+hc attr theme.normal.title_height 0
+hc attr theme.active.title_height 0
+hc attr theme.floating.title_height 38
+hc attr theme.title_color $fg
+
+# hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+hc attr theme.title_font $font
+hc attr theme.title_depth 22
+hc attr theme.title_align center
+
+# normal
+hc attr theme.normal.border_width 0
+hc attr theme.normal.color $bg
+hc attr theme.normal.outer_width 0
+hc attr theme.normal.outer_color $bg
+
+# active
+hc attr theme.active.border_width 3
+hc attr theme.active.color $bg
+hc attr theme.active.outer_width 3
+hc attr theme.active.outer_color $bg
+
+# floating
+hc attr theme.floating.border_width 0
+hc attr theme.floating.color $abg
+hc attr theme.floating.outer_width 0
+hc attr theme.floating.outer_color $bg
+
+hc attr theme.floating.padding_top 0
+hc attr theme.floating.padding_right 0
+hc attr theme.floating.padding_bottom 0
+hc attr theme.floating.padding_left 0
+
+hc set window_gap 4
+hc set smart_window_surroundings off
+hc set smart_frame_surroundings off
+hc set mouse_recenter_gap 0
+
+# rules
+hc unrule -F
+
+hc rule focus=on
+hc rule floatplacement=center
+
+hc rule class='URxvt' floating=on
+hc rule class='Thunar' floating=on
+hc rule class='Gimp' floating=on
+hc rule class='feh' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_NORMAL' floating=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+hc rule fixedsize floating=on
+
+hc set tree_style '╾│ ├└╼─┐'
+
+# unlock, just to be sure
+hc unlock
+
+# autostart commands
+exec $rdir/scripts/init &
+
+# monitor
+# hc detect_monitors
+

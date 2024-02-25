@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# dependencies: xgetres
+font=$(xgetres font)
+ulpx=3
+
+# colors
+fg=$(xgetres foreground)
+bg=$(xgetres background)
+
+c0=$(xgetres color0)
+c1=$(xgetres color1)
+c2=$(xgetres color2)
+c3=$(xgetres color3)
+
+afg=$(xgetres color16)
+abg=$(xgetres color17)
+
+# generate the contrasted bg
+_cgap=10
+_abg=$(echo $abg | sed -e 's/#//g')
+
+_abg_r=$(printf '%d\n' "0x${_abg:0:2}")
+_abg_g=$(printf '%d\n' "0x${_abg:2:2}")
+_abg_b=$(printf '%d\n' "0x${_abg:4:2}")
+
+_aabg_r=` printf '%X\n' "$(( _abg_r - _cgap ))" `
+_aabg_g=` printf '%X\n' "$(( _abg_g - _cgap ))" `
+_aabg_b=` printf '%X\n' "$(( _abg_b - _cgap ))" `
+
+# _aaabg_r=` printf '%X\n' "$(( _abg_r - (_cgap * 2) ))" `
+# _aaabg_g=` printf '%X\n' "$(( _abg_g - (_cgap * 2) ))" `
+# _aaabg_b=` printf '%X\n' "$(( _abg_b - (_cgap * 2) ))" `
+
+aabg="#$_aabg_r$_aabg_g$_aabg_b"
+# aaabg="#$_aaabg_r$_aaabg_g$_aaabg_b"
+
+# geometry
+wxh="x64"
+x="+0"
+y="+0"

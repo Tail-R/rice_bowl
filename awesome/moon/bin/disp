@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# dependencies: brightnessctl
+
+get_val() {
+    max=$(brightnessctl m)
+    cur=$(brightnessctl g)
+
+    echo $(( cur * 100 / max ))
+}
+
+# main
+case "$1" in
+    "-v")
+        get_val
+        ;;
+esac
+
+
+
+
+

@@ -1,0 +1,7 @@
+# dependencies: xgetres
+
+font=$(xgetres font)
+
+fg=$(xgetres foreground)
+bg=$(xgetres background)
+abg=$(xgetres color0) 

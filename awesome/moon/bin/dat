@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# dow=$(date +'%a')
+# time=$(date +'%H:%M')
+# mon=$(date +'%b')
+# day=$(date +'%d')
+
+case "$1" in
+    "-l")
+        date +'%a %b/%d %H:%M'
+        ;;
+    "-s")
+        date +'%H:%M'
+        ;;
+esac
+
+

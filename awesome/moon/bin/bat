@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# dependencies: acpi
+
+get_level() {
+    acpi -b | cut -d "," -f 2 | sed -e 's/%//g'
+}
+
+case "$1" in
+    "-v")
+        get_level
+        ;;
+esac
+

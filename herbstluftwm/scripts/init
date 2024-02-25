@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# dependencies: your nice programs
+
+exec xrandr --output eDP-1 --brightness 1.0 &
+exec $HOME/.fehbg &
+exec picom &
+exec $HOME/.config/lemonbar/bar &
+exec $HOME/.config/lemonbar/top_deco &
+exec fcitx5 &
+
+[! -s $HOME/.config/mpd/pid ] && mpd
+
+
+

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "bar" | lemonbar \
+    -g "1920x40+0+0" \
+    -b \
+    -f "Hack:size=16" \
+    -p \
+    -B "#ffffff" \
+    -F "#000000"

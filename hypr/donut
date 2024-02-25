@@ -1,0 +1,118 @@
+#! /usr/bin/env bash
+
+if [[ -z $HYPRLAND_INSTANCE_SIGNATURE ]]; then
+    echo "socket not found"
+    exit 1
+fi
+
+if [[ "$(command -v hyprctl)" == "" ]]; then
+    echo "hyprctl not found"
+    exit 1
+fi
+
+if [[ "$(command -v bc)" == "" ]]; then
+    echo "bc not found"
+    exit 1
+fi
+
+if [[ "$(command -v jq)" == "" ]]; then
+    echo "jq not found"
+    exit 1
+fi
+
+# To-Do: get display size by parsing hyprctl
+DISP_W=1920
+DISP_H=1200
+
+# just a center of the monitor
+BASE_X=$(( DISP_W / 2 ))
+BASE_Y=$(( DISP_H / 2 ))
+
+# active window size
+WIN_P_W=1000
+WIN_P_H=600
+
+# inactive window size
+WIN_C_W=600
+WIN_C_H=400
+
+R=$(echo "$DISP_H / 2 - 260" | bc)
+PI="3.1415"
+
+clients=""
+
+t_float() {
+    hyprctl dispatch togglefloating "address:$1" 1> /dev/null
+}
+
+resize() {
+    floating=$(hyprctl activewindow | grep "floating" | cut -f2 -d' ')
+
+    if [[ "$floating" == "1" ]]; then
+        hyprctl dispatch resizewindowpixel "exact $2 $3,address:$1" 1> /dev/null
+    fi
+}
+
+move() {
+    floating=$(hyprctl activewindow | grep "floating" | cut -f2 -d' ')
+
+    if [[ "$floating" == "1" ]]; then
+        hyprctl dispatch movewindowpixel "exact $2 $3,address:$1" 1> /dev/null
+    fi
+}
+
+go_rand() {
+    resize $1 $2 $3
+    move $1 $(( RANDOM % $4 )) $(( RANDOM % $5 ))
+}
+
+donut() {
+    n=$(echo $1 | sed -e "s/[^_]//g" | wc -c)
+    piece=$(echo "scale=4; 2 * $PI / $n" | bc)
+    rad=$piece
+    c_list=(${1//_/ })
+
+    echo ${c_list[@]}
+    for c in ${c_list[@]:0:$n}; do
+        x=$(echo "$BASE_X + $R * c($rad) - $WIN_C_W / 2" | bc -l)
+        y=$(echo "$BASE_Y + $R * s($rad) - $WIN_C_H / 2" | bc -l)
+
+        x=$(echo $x | sed -e "s/\.[0-9]*//g")
+        y=$(echo $y | sed -e "s/\.[0-9]*//g")
+        
+        win=$(echo $c | sed -e "s/_//g")
+        
+        resize $win $WIN_C_W $WIN_C_H
+        move $win $x $y
+        
+        rad=$(echo "scale=4; $rad + $piece" | bc)
+    done
+
+    win=$(echo "${c_list[@]: -1}" | sed -e "s/_//g")
+    
+    resize $win $WIN_P_W $WIN_P_H
+    move $win $(( BASE_X - $WIN_P_W / 2 )) $(( BASE_Y - $WIN_P_H / 2 ))
+}
+
+# command mode
+# _clients=$(hyprctl -j clients | jq .[].address | sed -e "s/\"//g" -e "s/^/_/g" -e "s/\n//g")
+# _clients=$(echo $_clients | sed -e "s/ //g")
+# donut $_clients
+
+# daemon mode
+socat - "UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r line; do
+    case $line in
+        openwindow*)
+            win=$(echo $line | sed -e "s/^.*>>//g" -e "s/,.*//g")
+            clients+="_0x$win"
+            
+            donut $clients 
+            ;;
+        closewindow*)
+            win=0x$(echo $line | sed -e "s/^.*>>//g")
+            clients=$(echo $clients | sed -e "s/_$win//g")
+            
+            donut $clients 
+            ;;
+    esac
+done

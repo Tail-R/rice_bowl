@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# dependencies: playerctl, ffmpeg
+
+MPD_MUSIC_DIR="$HOME/Music"
+MPD_CACHE_IMG="$HOME/.cache/mpd_cache.png"
+
+get_cover() {
+    status=$(playerctl status)
+
+    if [[ "$status" == "Playing" ]]; then
+        case "$(playerctl -l | awk 'NR == 1')" in
+            firefox* )
+                playerctl metadata --format '{{ mpris:artUrl }}' | sed -e 's/^.*file:\/\///g'
+                ;;
+            mpd* )
+                song_file="$MPD_MUSIC_DIR/$(mpc current -f %file%)"
+                
+                ffmpeg -i $song_file $MPD_CACHE_IMG -y &> /dev/null
+                
+                if [[ $(echo $?) == "0" ]]; then
+                    echo "$MPD_CACHE_IMG"
+                fi
+                ;;
+            vlc* )
+                playerctl metadata --format '{{ mpris:artUrl }}' | sed -e 's/^.*file:\/\///g'
+                ;;
+        esac
+    fi
+}
+
+get_cover
+
+

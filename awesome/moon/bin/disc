@@ -1,0 +1,4 @@
+#!/bin/bash
+
+usage=$(df | grep " /$" | rev | awk 'NR == 1 {print $2}' | rev | sed -e 's/%//g')
+echo $usage

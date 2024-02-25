@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# dependencies:
+# - font
+# - lemonbar-xft-git(AUR)
+# - acpi
+# - xprop
+# - xdotool
+# - wmctrl
+
+pkill lemonbar
+
+conf=$HOME/.config/lemonbar/conf
+fifo=$HOME/.cache/lemonbar.fifo
+parser=$HOME/.config/lemonbar/parser
+
+source $conf
+
+[[ -e $fifo ]] && rm -f $fifo
+
+mkfifo $fifo
+
+# workspaces
+ws_num=$(xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}')
+
+is_occu() {
+    wmctrl -l | awk '{print $2}' | sort | uniq | while read -r exist; do
+        if [[ "$exist" == "$1" ]]; then
+            echo "0"
+            break
+        fi
+    done
+}
+
+xprop -spy -root _NET_CURRENT_DESKTOP | while read -r; do
+    wmctrl -d | awk '{print $1 " " $2 " " $10}' | while read -r num stat name; do
+        stat_str="%{F$fg}"
+        icon="雪"
+
+        if [[ "$(is_occu $num)" == "0" ]]; then
+            stat_str="%{F$c2}"
+            icon="月"
+        fi
+
+        if [[ "$stat" == "*" ]]; then # "*" means active
+            stat_str="%{F$c1}"
+            icon="花"
+        fi
+
+        buff+="$stat_str $icon "
+
+        if [[ "$num" == "$(( $ws_num - 1 ))" ]]; then
+            echo "WS$buff" > $fifo 
+        fi
+    done
+done &
+
+# number of the clients
+xprop -spy -root _NET_CLIENT_LIST | while read -r; do
+    echo "NOC# $(wmctrl -l | grep -e " [0-9] " | wc -l)" > $fifo
+done &
+
+# battery
+while true; do
+    echo "BATHP $(acpi -b | cut -d "," -f 2)" > $fifo
+    sleep 30
+done &
+
+# date
+while true; do
+    echo "DAT$(date +'%H:%M %b/%d ')" > $fifo
+    sleep 30
+done &
+
+tail -f $fifo | $parser $conf | lemonbar \
+    -g ${wxh}${x}${y} \
+    -b \
+    -f $font \
+    -p \
+    -B $bg \
+    -F $fg

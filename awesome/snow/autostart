@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# start() {
+#     if ! pgrep -f "$1" > /dev/null; then
+#         "$@"&
+#     fi
+# }
+
+killall picom; picom --daemon
+killall mpd; mpd
+killall mpDris2; mpDris2
+killall fcitx5; fcitx5
+
