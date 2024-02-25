@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# dependencies: xprop wmctrl
+
+ws_num=$(xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}')
+
+
+is_occu() {
+    wmctrl -l | awk '{print $2}' | sort | uniq | while read -r exist; do
+        if [ "$exist" == "$1" ]; then
+            echo "-"
+            return
+        fi
+    done
+}
+
+# main loop
+xprop -spy -root _NET_CURRENT_DESKTOP | while read -r; do 
+    wmctrl -d | awk '{print $1 " " $2 " " $9}' | while read -r num stat name; do
+        stat_str='inactive'
+
+        if [ "$(is_occu $num)" == "-" ]; then # "-" mean occupied
+            stat_str='occupied'
+        fi
+
+        if [ "$stat" == "*" ]; then # "*" mean active
+            stat_str='active'
+        fi
+
+        buff+=$'\n'
+        buff+="$name $stat_str"
+
+        if [ "$num" == "$(( $ws_num - 1 ))" ]; then
+            echo $buff
+        fi
+    done
+done

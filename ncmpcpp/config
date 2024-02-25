@@ -1,0 +1,58 @@
+# mpd
+mpd_host = localhost
+mpd_port = 6600
+mpd_music_dir = ~/Music
+mpd_crossfade_time = 5
+mpd_connection_timeout = 5
+
+# general
+ncmpcpp_directory = ~/.config/ncmpcpp
+lyrics_directory = ~/.lyrics
+
+mouse_support = "yes"
+
+playlist_shorten_total_times = "yes"
+playlist_display_mode = "columns"
+playlist_editor_display_mode = "columns"
+search_engine_display_mode = "columns"
+
+main_window_color "default"
+startup_screen = "playlist"
+autocenter_mode = "yes"
+
+# UI options
+user_interface = "classic"
+# user_interface = "alternative"
+
+header_visibility = "no"
+statusbar_visibility = "no"
+titles_visibility = "no"
+enable_window_title = "yes"
+
+# progressbar_look = "━━━"
+progressbar_look = "▃▃▃"
+progressbar_elapsed_color = "3"
+progressbar_color = "4"
+
+statusbar_color = "1"
+
+# custom UI options
+now_playing_prefix = "$2>"
+now_playing_suffix = ""
+current_item_prefix = "$3>"
+current_item_suffix = ""
+
+song_status_format="$1%t"
+song_list_format = "  %t %a %l  "
+song_columns_list_format = "(64)[4]{tl} (28)[1]{ar}(8)[3]{lr}"
+# song_columns_list_format = "(64)[4]{tl} (36)[2]{ar}"
+
+
+# alternative UI options
+alternative_ui_separator_color = "default"
+alternative_header_first_line_format = "$b$4%t"
+alternative_header_second_line_format = "$b$3%a"
+
+# custome actions
+# execute_on_song_change = ""
+

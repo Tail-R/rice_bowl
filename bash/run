@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# dependencies: font, dmenu, xgetres
+
+# font
+fname=$(xgetres font)
+
+# colors
+nfg=$(xgetres foreground)
+nbg=$(xgetres background)
+sfg=$(xgetres foreground)
+sbg=$(xgetres color0)
+
+dmenu_run \
+    -fn "$fname" \
+    -nf $nfg \
+    -nb $nbg \
+    -sf $sfg \
+    -sb $sbg

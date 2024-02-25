@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# dependencies: acpi
+
+get_level() {
+    acpi -b | cut -d "," -f 2
+}
+
+# main
+case "$1" in
+    "-l")
+        get_level
+        ;;
+    "")
+        echo "available options:"
+        echo "-l"
+        ;;
+esac
+

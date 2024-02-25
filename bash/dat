@@ -1,0 +1,9 @@
+#!/bin/bash
+
+dow=$(date +'%a')
+time=$(date +'%H:%M')
+mon=$(date +'%b')
+day=$(date +'%d')
+
+echo "$dow $mon/$day $time"
+

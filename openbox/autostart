@@ -1,0 +1,8 @@
+xsetroot -solid "#ffffff"
+~/.config/lemonbar/bar &
+~/.fehbg &
+picom &
+dunst &
+mpd &
+fcitx5
+

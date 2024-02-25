@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# dependencies: pactl pamixer
+
+pamixer --get-volume # as init
+
+# main loop
+pactl subscribe \
+    | grep --line-buffered "Event 'change' on sink" \
+    | while read -r evt; do
+    
+    if [ "$(pamixer --get-mute)" == "true" ]; then
+        echo "muted"
+    else
+        pamixer --get-volume
+    fi
+done
+
+

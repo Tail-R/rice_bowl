@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# dependencies dunst, notify-send
+
+pkill dunst
+dunst &
+notify-send "hello world!"
+

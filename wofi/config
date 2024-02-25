@@ -1,0 +1,8 @@
+width = 730px
+/* height = 400px */
+lines = 10
+columns = 2
+filter_rate = 200
+allow_images = false
+hide_scroll = true
+normal_window = true

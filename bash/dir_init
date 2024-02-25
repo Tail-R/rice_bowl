@@ -1,0 +1,27 @@
+#!/bin/bash
+
+mkdir -p $HOME/Pictures
+mkdir -p $HOME/Downloads
+mkdir -p $HOME/Documents
+mkdir -p $HOME/Music
+mkdir -p $HOME/Videos
+
+# Pictures
+mkdir -p $HOME/Pictures/artworks
+mkdir -p $HOME/Pictures/wallpapers
+mkdir -p $HOME/Pictures/screenshots
+
+# Documents
+mkdir -p $HOME/Documents/workspaces
+mkdir -p $HOME/Documents/sources
+mkdir -p $HOME/Documents/class
+mkdir -p $HOME/Documents/fonts
+
+# workspaces
+mkdir -p $HOME/Documents/workspaces/rust
+mkdir -p $HOME/Documents/workspaces/bash
+mkdir -p $HOME/Documents/workspaces/c
+mkdir -p $HOME/Documents/workspaces/cpp
+mkdir -p $HOME/Documents/workspaces/python
+
+

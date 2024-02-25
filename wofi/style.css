@@ -1,0 +1,66 @@
+/* 
+
+i couldn't find out good official doc of 
+wofi so evelything is just working uwu*
+
+*/
+
+
+@define-color fg #7777aa;
+@define-color bg #f5f5ff;
+
+@define-color c0 #ffccee;
+@define-color c1 #eebbee;
+@define-color c2 #bbbbff;
+@define-color c3 #bbaaee;
+
+/* @define-color c4 */ 
+/* @define-color c5 */
+/* @define-color c6 */
+/* @define-color c7 */
+
+/* global */
+* {
+    font-family: "Hack";
+    font-size: 16;
+    outline: none; /* wofi has an wired border by default lol */
+}
+
+/* group */
+window {}
+
+#outer-box {
+    background-color: @bg;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* input */
+#input {
+    color: @fg;
+    background-color: @bg;
+    border: 0px solid @bg;
+    border-radius: 8px;
+    margin: 6px;
+}
+
+/* entry */
+#entry {
+    color: @fg;
+    background-color: @bg;
+    border: 0px solid @bg;
+    border-radius: 8px;
+    margin: 6px;
+    padding: 6px 12px 6px 12px;
+}
+
+#entry:selected { 
+    color: @bg;
+    background-color: @c2;
+}
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="https://openbox.org/"
+ xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://openbox.org/">
+  <menu id="root-menu" label="Applications">
+    <item label="File Manager"><action name="Execute"><command><![CDATA[xdg-open .]]></command></action></item>
+    <item label="Terminal"><action name="Execute"><command><![CDATA[urxvt]]></command></action></item>
+    <item label="Web Browser"><action name="Execute"><command><![CDATA[xdg-open http://]]></command></action></item>
+    <item label="Run command"><action name="Execute"><command><![CDATA[gmrun]]></command></action></item>
+  <separator label="Categories"/>
+  <menu id="0.632476951069297" label="Accessories">
+    <item label="About Xfce"><action name="Execute"><command><![CDATA[xfce4-about]]></command></action></item>
+    <item label="Archive Manager"><action name="Execute"><command><![CDATA[file-roller]]></command></action></item>
+    <item label="Bulk Rename"><action name="Execute"><command><![CDATA[thunar --bulk-rename]]></command></action></item>
+    <item label="Fcitx 5"><action name="Execute"><command><![CDATA[/usr/bin/fcitx5]]></command></action></item>
+    <item label="Keyboard layout viewer"><action name="Execute"><command><![CDATA[kbd-layout-viewer5]]></command></action></item>
+    <item label="Nemo"><action name="Execute"><command><![CDATA[nemo]]></command></action></item>
+    <item label="picom"><action name="Execute"><command><![CDATA[picom]]></command></action></item>
+    <item label="Vim"><action name="Execute"><command><![CDATA[urxvt -e 'vim']]></command></action></item>
+  </menu>
+  <menu id="0.92942642080331" label="Development">
+    <item label="Geany"><action name="Execute"><command><![CDATA[geany]]></command></action></item>
+  </menu>
+  <menu id="0.476667532037151" label="Graphics">
+    <item label="GNU Image Manipulation Program"><action name="Execute"><command><![CDATA[gimp-2.10]]></command></action></item>
+  </menu>
+  <menu id="0.670286175419228" label="Multimedia">
+    <item label="PulseAudio Volume Control"><action name="Execute"><command><![CDATA[pavucontrol]]></command></action></item>
+    <item label="Qt V4L2 test Utility"><action name="Execute"><command><![CDATA[qv4l2]]></command></action></item>
+    <item label="Qt V4L2 video capture utility"><action name="Execute"><command><![CDATA[qvidcap]]></command></action></item>
+    <item label="VLC media player"><action name="Execute"><command><![CDATA[/usr/bin/vlc --started-from-file]]></command></action></item>
+  </menu>
+  <menu id="0.0892516489958162" label="Network">
+    <item label="Avahi SSH Server Browser"><action name="Execute"><command><![CDATA[/usr/bin/bssh]]></command></action></item>
+    <item label="Avahi VNC Server Browser"><action name="Execute"><command><![CDATA[/usr/bin/bvnc]]></command></action></item>
+    <item label="Firefox Web Browser"><action name="Execute"><command><![CDATA[/usr/lib/firefox/firefox]]></command></action></item>
+  </menu>
+  <menu id="0.863314223926849" label="Other">
+    <item label="Rofi Theme Selector"><action name="Execute"><command><![CDATA[rofi-theme-selector]]></command></action></item>
+    <item label="Rofi"><action name="Execute"><command><![CDATA[rofi -show]]></command></action></item>
+  </menu>
+  <menu id="0.494930618346498" label="Settings">
+    <item label="Fcitx 5 Configuration"><action name="Execute"><command><![CDATA[/usr/bin/fcitx5-configtool]]></command></action></item>
+    <item label="Fcitx 5 Migration Wizard"><action name="Execute"><command><![CDATA[fcitx5-migrator]]></command></action></item>
+    <item label="File Manager Settings"><action name="Execute"><command><![CDATA[thunar-settings]]></command></action></item>
+    <item label="PulseAudio Volume Control"><action name="Execute"><command><![CDATA[pavucontrol]]></command></action></item>
+  </menu>
+  <menu id="0.18833572724278" label="System">
+    <item label="Alacritty"><action name="Execute"><command><![CDATA[alacritty]]></command></action></item>
+    <item label="Avahi Zeroconf Browser"><action name="Execute"><command><![CDATA[/usr/bin/avahi-discover]]></command></action></item>
+    <item label="Fcitx 5"><action name="Execute"><command><![CDATA[/usr/bin/fcitx5]]></command></action></item>
+    <item label="Hardware Locality lstopo"><action name="Execute"><command><![CDATA[lstopo]]></command></action></item>
+    <item label="kitty"><action name="Execute"><command><![CDATA[kitty]]></command></action></item>
+    <item label="ranger"><action name="Execute"><command><![CDATA[urxvt -e 'ranger']]></command></action></item>
+    <item label="Thunar File Manager"><action name="Execute"><command><![CDATA[thunar]]></command></action></item>
+    <item label="urxvt (client)"><action name="Execute"><command><![CDATA[urxvtc]]></command></action></item>
+    <item label="urxvt (tabbed)"><action name="Execute"><command><![CDATA[urxvt-tabbed]]></command></action></item>
+    <item label="urxvt"><action name="Execute"><command><![CDATA[urxvt]]></command></action></item>
+    <item label="UXTerm"><action name="Execute"><command><![CDATA[uxterm]]></command></action></item>
+    <item label="XTerm"><action name="Execute"><command><![CDATA[xterm]]></command></action></item>
+  </menu>
+  <separator/>
+  <menu id="0.565020503001879" label="Openbox">
+  <menu id="0.327386362537027" label="Obmenu-Generator">
+    <item label="Menu Schema"><action name="Execute"><command><![CDATA[geany ~/.config/obmenu-generator/schema.pl]]></command></action></item>
+    <item label="Menu Config"><action name="Execute"><command><![CDATA[geany ~/.config/obmenu-generator/config.pl]]></command></action></item>
+  <separator/>
+    <item label="Generate a static menu"><action name="Execute"><command><![CDATA[obmenu-generator -s -c]]></command></action></item>
+    <item label="Generate a static menu with icons"><action name="Execute"><command><![CDATA[obmenu-generator -s -i -c]]></command></action></item>
+  <separator/>
+    <item label="Generate a dynamic menu"><action name="Execute"><command><![CDATA[obmenu-generator -p]]></command></action></item>
+    <item label="Generate a dynamic menu with icons"><action name="Execute"><command><![CDATA[obmenu-generator -p -i]]></command></action></item>
+  <separator/>
+    <item label="Refresh cache"><action name="Execute"><command><![CDATA[obmenu-generator -d]]></command></action></item>
+  </menu>
+  <menu id="0.107259072379559" label="Openbox">
+    <item label="Openbox Autostart"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/autostart]]></command></action></item>
+    <item label="Openbox RC"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/rc.xml]]></command></action></item>
+    <item label="Openbox Menu"><action name="Execute"><command><![CDATA[geany ~/.config/openbox/menu.xml]]></command></action></item>
+    <item label="Reconfigure Openbox"><action name="Execute"><command><![CDATA[openbox --reconfigure]]></command></action></item>
+  </menu>
+  </menu>
+  <menu id="0.277134494846429" label="Tools">
+  <menu id="0.639037290385193" label="Screenshot">
+    <item label="full"><action name="Execute"><command><![CDATA[~/.config/openbox/scripts/ss -f]]></command></action></item>
+    <item label="select"><action name="Execute"><command><![CDATA[~/.config/openbox/scripts/ss -s]]></command></action></item>
+  </menu>
+  </menu>
+  <separator/>
+    <item label="Lock"><action name="Execute"><command><![CDATA[xscreensaver-command -lock]]></command></action></item>
+    <item label="Exit"><action name="Exit"/></item>
+  </menu>
+</openbox_menu>

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+term="alacritty"
+
+summon() {
+    [[ "$#" != "4" ]] && exit 1
+    hyprctl dispatch exec "[float; move $1 $2; size $3 $4] $term" 1> /dev/null
+}
+
+move() {
+    [[ "$#" != "2" ]] && exit 1
+    hyprctl dispatch moveactive exact $1 $2 1> /dev/null
+}
+
+resize() {
+    [[ "$#" != "2" ]] && exit 1
+    hyprctl dispatch resizeactive exact $1 $2 1> /dev/null
+}
+
+move_and_resize() {
+    [[ "$#" != "4" ]] && exit 1
+    move $1 $2
+    resize $3 $4
+}
+
+case $1 in
+    -x )
+        # summon $2 $3 $4 $5
+        summon $(slurp | sed -e 's/,/ /g' -e 's/x/ /g')
+        ;;
+    -m )
+        # move $2 $3
+        ;;
+    -r )
+        # resize $2 $3
+        ;;
+    -mr )
+        move_and_resize $(slurp | sed -e 's/,/ /g' -e 's/x/ /g')
+        ;;
+esac
+
