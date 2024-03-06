@@ -1,0 +1,42 @@
+!! urxvt
+URxvt.font:	xft:azukifontB:size=14:weight=regular
+URxvt.geometry: 96x32
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.cursorUnderline: false
+URxvt.cursorBlink: true
+URxvt.saveLines: 4096
+URxvt.internalBorder: 3
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+
+URxvt.keysym.Control-Shift-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Shift-V: eval:paste_clipboard
+
+!! colors
+*.foreground:	#776677
+*.background:	#fff5f5
+
+*.color0:	#776677
+*.color8:	#776677
+
+*.color1:	#a77580
+*.color9:	#a77580
+
+*.color2:	#aa909a
+*.color10:	#aa909a
+
+*.color3:	#ada9a9
+*.color11:	#ada9a9
+
+*.color4:	#909bb0
+*.color12:	#909bb0
+
+*.color5:	#eabcbc
+*.color13:	#eabcbc
+
+*.color6:	#9f9ebe
+*.color14:	#9f9ebe
+
+*.color7:	#fff5f5
+*.color15:	#fff5f5
