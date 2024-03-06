@@ -1,0 +1,15 @@
+Config {
+    font = "azukifontB Bold 12",
+    fgColor = "#776677",
+    bgColor = "#fff5f5",
+    position = TopSize L 100 22,
+    commands =
+        [
+            Run XMonadLog,
+            Run Battery ["--template", "充電 <left>%"] 120,
+            Run Date "%H時%M分" "date" 30
+        ],
+    sepChar = "%",
+    alignSep = "}{",
+    template = "%XMonadLog%}{%battery% %date%"
+}
