@@ -1,6 +1,6 @@
 # Awesome
 ![20240106_014430](https://github.com/Tail-R/rice_bowl/assets/132870183/de414c8b-a299-47bb-bd62-2b64bc7d2d2f)
-# XMonad (nopadding and 1px border 🗿)
+# XMonad
 ![20240307_033852](https://github.com/Tail-R/rice_bowl/assets/132870183/dc36bbde-51b4-49b9-af46-d8a014202c75)
 # OpenBox
 ![20231206_234009](https://github.com/Tail-R/rice_bowl/assets/132870183/07b8996e-7f4f-4e14-9b64-3683d0365d22)
