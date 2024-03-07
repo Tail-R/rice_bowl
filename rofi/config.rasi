@@ -1,0 +1,109 @@
+configuration {
+    show-icons: false;
+    drun-display-format: "{name}";
+}
+
+* {
+    font: "azukifontB 14";
+
+    fg: #776677;
+    bg: #fff5f5;
+
+    /* color0: #776677;
+    color1: #a77580;
+    color2: #aa909a;
+    color3: #ada9a9;
+    color4: #909bb0;
+    color5: #eabcbc;
+    color6: #9f9ebe;
+    color7: #fff5f5; */
+}
+
+window {
+    location: north;
+    anchor: north;
+
+    width: 420px;
+    height: 50%;
+
+    margin: 40px 0px 0px 10px;
+
+    background-color: @bg;
+    border: 1px;
+    padding: 32px;
+}
+
+inputbar {
+    children: [textbox-prompt-colon, entry];
+}
+
+textbox-prompt-colon {
+    color: @fg;
+    background-color: @bg;
+    padding: 6px;
+    str: "Search";
+}
+
+entry {
+    color: @fg;
+    padding: 6px;
+    placeholder: "";
+}
+
+listview {
+    border: 0px;
+    scrollbar: false;
+}
+
+element {
+    border: 0px;
+    padding: 6px;
+}
+
+/* normal */
+element.normal.normal {
+    color: @fg;
+    background-color: @bg;
+}
+
+element.normal.urgent {
+    color: @fg;
+    background-color: @bg;
+}
+
+element.normal.active {
+    color: @fg;
+    background-color: @bg;
+}
+
+/* selected */
+element.selected.normal {
+    color: @bg;
+    background-color: @fg;
+}
+
+element.selected.urgent {
+    color: @bg;
+    background-color: @fg;
+}
+
+element.selected.active {
+    color: @bg;
+    background-color: @fg;
+}
+
+/* alternate */
+element.alternate.normal {
+    color: @fg;
+    background-color: @bg;
+}
+
+element.alternate.urgent {
+    color: @fg;
+    background-color: @bg;
+}
+
+element.alternate.active {
+    color: @fg;
+    background-color: @bg;
+}
