@@ -1,0 +1,26 @@
+Config {
+    font = "azukifontB Bold 12",
+    border = BottomB,
+    borderColor = "#776677",
+    borderWidth = 0,
+    fgColor = "#776677",
+    bgColor = "#fff5f5",
+    position = TopSize L 100 42,
+    commands =
+        [
+            Run XMonadLog,
+            Run Date "%H時%M分" "date" 30,
+            Run Battery
+                [
+                    "--template", "充電 <left>%",
+                    "-L", "20",
+                    "-H", "80",
+                    "--high", "#776677",
+                    "--normal", "#ada909",
+                    "--low", "#a77580"
+                ] 120
+        ],
+    sepChar = "%",
+    alignSep = "}{",
+    template = "  %date%}%XMonadLog%{%battery%  "
+}
