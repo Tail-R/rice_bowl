@@ -1,0 +1,7 @@
+[manager]
+ratio = [2, 5, 3] # ratio of the items
+sort_by = "alphabetical"
+sort_dir_first = true
+show_hidden = true
+show_symlink = true
+scrolloff = 5 # mouse scroll speed
