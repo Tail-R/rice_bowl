@@ -1,9 +1,0 @@
-# prompt appearance
-format = '[ ](bg:cyan)$directory '
-add_newline = true
-
-[directory]
-truncation_length = 5
-format = '[ $path ](fg:white bg:black)'
-home_symbol = '󰜥 '
-
