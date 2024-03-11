@@ -1,7 +1,8 @@
 # Awesome
 ![20240106_014430](https://github.com/Tail-R/rice_bowl/assets/132870183/de414c8b-a299-47bb-bd62-2b64bc7d2d2f)
 # XMonad
-![20240311_043610](https://github.com/Tail-R/rice_bowl/assets/132870183/57f9f947-8217-4400-b1d7-dd4004503021)
+![20240312_013658](https://github.com/Tail-R/rice_bowl/assets/132870183/a0bcb58b-797a-4863-9fed-48477854a90b)
+![20240312_014300](https://github.com/Tail-R/rice_bowl/assets/132870183/f5a8595e-ecdd-4e5a-9127-5ebf9169ce44)
 # OpenBox
 ![20231206_234009](https://github.com/Tail-R/rice_bowl/assets/132870183/07b8996e-7f4f-4e14-9b64-3683d0365d22)
 ![ss](https://github.com/Tail-R/rice_bowl/assets/132870183/e1054beb-68d6-4b8c-a896-b8e9c72920b0)
