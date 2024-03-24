@@ -1,0 +1,47 @@
+#
+# Background and borders
+#
+
+# 1 panel background
+rounded = 0
+border_width = 2
+border_sides = TBLR
+background_color = #ffffff 100
+border_color = #ffcccc 100
+
+#
+# Panel
+#
+panel_items = CB
+panel_monitor = 1
+panel_position = top left horizontal
+panel_size = 100% 52
+panel_shrink = 1
+panel_margin = 16 16
+panel_padding = 16 0 0
+panel_background_id = 1
+panel_layer = bottom
+strut_policy = none
+panel_window_name = tint2
+
+#
+# Clock
+#
+time1_format = %H時%M分
+time1_timezone = :Asia/Tokyo
+time1_font = azukifontB Bold 14
+clock_font_color = #aa0000 100
+clock_padding = 8 8 0
+clock_background_id = 0
+
+#
+# Battery
+#
+battery_low_status = 20
+battery_low_cmd = notify-send "充電してください！"
+bat1_font = azukifontB Bold 14
+battery_font_color = #aa0000 100
+bat1_format = %s %p
+battery_padding = 8 8 0
+battery_background_id = 0
+battery_tooltip_enabled = 0
